@@ -4,7 +4,13 @@
   "description": "extension to mute video ads",
   "version": "0.1",
   "action": {
-    "default_popup": "is_this_an_ad.html",
-  }
+    "default_popup": "is_this_an_ad.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["script.js"]
+    }
+  ]
 }
 
