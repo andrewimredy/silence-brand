@@ -1,0 +1,10 @@
+{
+  "manifest_version": 3,
+  "name": "silence, brand",
+  "description": "extension to mute video ads",
+  "version": "0.1",
+  "action": {
+    "default_popup": "is_this_an_ad.html",
+  }
+}
+
