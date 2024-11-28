@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        width: 150px;
+        height: 180px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-family: Arial, sans-serif;
+      }
+      #toggleButton {
+        font-size: 24px;
+        border: none;
+        cursor: pointer;
+        padding: 10px 20px;
+        border-radius: 5px;
+        color: white;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+      #resultDisplay, #timeDisplay {
+        text-align: center;
+        font-size: 16px;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <button id="toggleButton"></button>
+    <div id="resultDisplay"></div>
+    <div id="timeDisplay"></div>
+    <script src="popup.js"></script>
+  </body>
+</html>

@@ -3,13 +3,31 @@
   "name": "silence, brand",
   "description": "extension to mute video ads",
   "version": "0.1",
+  "icons": {
+    "16": "crab.png"
+  },
+  "permissions": [
+    "activeTab",
+    "tabs",
+    "storage",
+    "https://api.openai.com/"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
   "action": {
-    "default_popup": "is_this_an_ad.html"
+    "default_popup": "popup.html"
   },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["script.js"]
+      "js": ["popup.js"]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["config.js"],
+      "matches": ["<all_urls>"]
     }
   ]
 }
