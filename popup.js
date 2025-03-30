@@ -1,6 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
   let toggleButton = document.getElementById('toggleButton');
   let resultDisplay = document.createElement('div');
+  let dataCollectToggle = document.getElementById('dataCollectToggle');
+  let screencapButton = document.getElementById('screencapButton');
+
+  
   resultDisplay.id = 'resultDisplay';
   let timeDisplay = document.createElement('div');
   timeDisplay.id = 'timeDisplay';
@@ -48,6 +52,10 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
+  screencapButton.addEventListener('click', function() {
+    chrome.runtime.sendMessage({action: "captureScreenshot"});
+  });
+
   chrome.storage.onChanged.addListener((changes, namespace) => {
     if (changes.analysisResult) {
       updateResultDisplay(changes.analysisResult.newValue);
@@ -56,4 +64,8 @@ document.addEventListener('DOMContentLoaded', function() {
       updateTimeDisplay(changes.lastEvaluationTime.newValue);
     }
   });
+
+  
+
+
 });

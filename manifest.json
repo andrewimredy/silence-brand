@@ -10,7 +10,8 @@
     "activeTab",
     "tabs",
     "storage",
-    "https://api.openai.com/"
+    "https://api.openai.com/",
+    "download"
   ],
   "background": {
     "service_worker": "background.js"

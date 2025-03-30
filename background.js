@@ -30,13 +30,14 @@ function stopAnalyzing() {
 async function analyzeContent() {
   try {
     const screenshotUrl = await captureScreenshot();
-    await sendPngToChatGpt(screenshotUrl);
+    saveScreenshot(screenshotUrl);
   } catch (error) {
     console.error("Error in analyzeContent:", error);
   }
 }
 
 function captureScreenshot() {
+  alert("hi")
   return new Promise((resolve, reject) => {
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
       if (tabs[0]) {
@@ -51,6 +52,15 @@ function captureScreenshot() {
         reject(new Error("No active tab found"));
       }
     });
+  });
+}
+
+function saveScreenshot(dataUrl) {
+  const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+  chrome.downloads.download({
+    url: dataUrl,
+    filename: `screenshots/screenshot-${timestamp}.png`,  // This will create a 'screenshots' subfolder
+    saveAs: false
   });
 }
 
@@ -104,10 +114,10 @@ async function sendPngToChatGpt(imageUrl) {
   }
 }
 
-function updateTabAudio(shouldMute) {
+function updateTabAudio(mute) {
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
     if (tabs[0]) {
-      chrome.tabs.update(tabs[0].id, {muted: shouldMute});
+      chrome.tabs.update(tabs[0].id, {muted: mute});
     }
   });
 }
@@ -122,6 +132,9 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     }
     chrome.storage.local.set({isActive: isActive});
     sendResponse({isActive: isActive});
+  }
+  if (request.action === "captureScreenshot") {
+    captureScreenshot().then(saveScreenshot).catch(error => console.error("Error capturing screenshot:", error));
   }
 });
 
