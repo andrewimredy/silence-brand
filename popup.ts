@@ -1,4 +1,16 @@
 
+let screenshotBase64; //string
+
+async function saveScreenshotAsJpg(category){
+  console.log("got to here!!!!");
+  await chrome.downloads.download({
+    url: screenshotBase64,  
+    filename: "screenshot_data/" + category+ "/" + crypto.randomUUID()+".jpg", 
+    saveAs: false
+  });
+}
+
+
 document.addEventListener('DOMContentLoaded', function() {
   let screenshotButton = document.getElementById('screenshotButton');
   let frame = document.getElementById('ssPlaceholder');
@@ -26,6 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let capturePromise = chrome.tabs.captureVisibleTab();
     capturePromise.then((b64) => {
+        screenshotBase64 = b64;
         frame.src = b64;
         saveDiv.style.display = 'flex';
       })
@@ -33,8 +46,20 @@ document.addEventListener('DOMContentLoaded', function() {
         console.error("Error capturing screenshot:", error);
         alert("Error capturing screenshot: " + error.message);
       });
-    console.log(capturePromise);
+    //console.log(capturePromise);
 
+  });
+
+  saveAdBtn?.addEventListener("click", () => {
+    saveScreenshotAsJpg("ad");
+
+    saveDiv.style.display = 'none';
+    //todo should i clear this after save somehow?
+  });
+
+  saveBroadcastBtn?.addEventListener("click", () =>{
+    saveScreenshotAsJpg("sports");
+    saveDiv.style.display = 'none';
   });
 
 });
