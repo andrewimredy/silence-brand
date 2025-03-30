@@ -11,8 +11,11 @@ document.addEventListener('DOMContentLoaded', function() {
     //NB: chrome.tabs.update(tabId, {muted});
 
     let capturePromise = chrome.tabs.captureVisibleTab();
-    capturePromise.then(dataUrl => {
-      alert(dataUrl);
+    capturePromise.then((b64: string) => {
+      let img = new Image();
+      img.src = b64;
+
+      alert(b64);
     })
       .catch(error => {
         console.error("Error capturing screenshot:", error);
