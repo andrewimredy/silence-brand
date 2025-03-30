@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "silence, brand",
   "description": "extension to mute video ads",
-  "version": "0.1",
+  "version": "0.2",
   "icons": {
     "16": "crab.png"
   },
@@ -22,7 +22,7 @@
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["popup.js"]
+      "js": ["popup.ts"]
     }
   ],
   "web_accessible_resources": [
