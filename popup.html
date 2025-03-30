@@ -4,11 +4,20 @@
 	  <script src="popup.ts"></script>
   </head>
   <body>
-    <div style="background-color: blue; padding: 2px;">
+    <div style="background-color: blue; padding: 2px; min-width: 300px; display:flex; flex-direction: column;">
       <button 
-        style="min-width: 150px;" id="screenshotButton">
+        style="min-width: 150px; margin:auto; margin-bottom: 3px;" id="screenshotButton">
         Take a screenshot!
       </button>
+      <img id="ssPlaceholder" style="max-width: 300px; height: auto;">
+      <div id="saveBtnContainer" style="display: none; justify-content: space-evenly; width: 100%; margin-top: 2px;">
+        <button id="saveAd">
+          Save as Ad
+        </button>
+        <button id="saveBroadcast">
+          Save as Sports
+        </button>
+      </div>
     </div>
   </body>
 </html>
