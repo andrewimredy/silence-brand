@@ -3,3 +3,4 @@ config.js
 node_modules
 .venv
 training_data
+evaluation_data
